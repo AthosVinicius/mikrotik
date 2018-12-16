@@ -1,0 +1,33 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 23/03/2018
+ * Time: 17:31
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Services\OvpnServerService;
+
+class OvpnServerController extends Controller
+{
+    public function getOvpns(){
+        $result = OvpnServerService::getOvpns();
+
+        echo json_encode($result['result']);
+    }
+
+    public function addOvpn(){
+        OvpnServerService::addOvpn($_POST);
+    }
+
+    public function updateOvpn(){
+        OvpnServerService::updateOvpn($_POST);
+    }
+
+    public function removeOvpn(){
+        OvpnServerService::removeOvpn($_POST);
+    }
+}

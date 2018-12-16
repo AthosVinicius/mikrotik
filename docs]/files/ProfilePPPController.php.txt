@@ -1,0 +1,33 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 23/03/2018
+ * Time: 18:02
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Services\ProfilePPPService;
+
+class ProfilePPPController extends Controller
+{
+    public function getProfiles(){
+        $result = ProfilePPPService::getProfiles();
+
+        echo json_encode($result['result']);
+    }
+
+    public function addProfile(){
+        ProfilePPPService::addProfile($_POST);
+    }
+
+    public function updateProfile(){
+        ProfilePPPService::updateProfile($_POST);
+    }
+
+    public function removeProfile(){
+        ProfilePPPService::removeProfile($_POST);
+    }
+}

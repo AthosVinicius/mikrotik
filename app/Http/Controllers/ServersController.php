@@ -1,0 +1,70 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 08/03/2018
+ * Time: 15:22
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Model\Profile;
+use App\Http\Services\ServersService;
+use App\Http\Util\MikrotikUtil;
+
+/**
+ * This Class is responsible for managing all DHCPs ofs Clients stored in mikrotik
+ *
+ *
+ *
+ * @package App\Http\Controllers
+ * @author This code was developed by Atos Vinicius, under the service of MF Info
+ * @version initial
+ */
+class ServersController
+{
+    /**
+     * this method returns all registered Profiles in mikrotik
+     *
+     *
+     *
+     * @return array returns all records
+     * @access public
+     */
+    public function getProfiles(){
+        $result = ServersService::getProfiles();
+
+        echo json_encode($result['result']);
+    }
+
+    /**
+     * this method adds a new Profiles
+     *
+     * @access public
+     */
+    public function addProfile(){
+        ServersService::addProfile($_POST);
+    }
+
+    /**
+     * this method updates a specified Profile through the index passed through the post
+     *
+     * @access public
+     */
+    public function updateProfile(){
+        ServersService::updateProfile($_POST);
+    }
+
+
+    /**
+     * this method remove a specified Profile through the index passed through the post
+     *
+     * @access public
+     */
+    public function removeProfile(){
+        ServersService::removeProfile($_POST);
+    }
+
+
+}

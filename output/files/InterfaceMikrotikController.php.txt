@@ -1,0 +1,37 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 18/03/2018
+ * Time: 20:53
+ */
+
+namespace App\Http\Controllers;
+
+
+
+use App\Http\Services\InterfacesMikrotikService;
+
+class InterfaceMikrotikController extends Controller
+{
+    public function getInterface(){
+        $result = InterfacesMikrotikService::getInterface();
+
+        //HEADER JSON
+        header('Content-Type: application/json');
+        echo json_encode($result['result']);
+    }
+
+    public function disabletInterface(){
+        InterfacesMikrotikService::disableInterface($_POST);
+    }
+
+    public function enabletInterface(){
+        InterfacesMikrotikService::enableInterface($_POST);
+    }
+
+    public function updateInterface(){
+        InterfacesMikrotikService::updateInterface($_POST);
+    }
+
+}

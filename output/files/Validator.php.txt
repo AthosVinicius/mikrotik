@@ -1,0 +1,31 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 07/03/2018
+ * Time: 17:35
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Util\MikrotikUtil;
+
+class Validator extends Controller
+{
+    public static function is_empty($value){
+        $result = false;
+        if(empty($value)) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public static function is_empty_null($value){
+        if(empty($value)) {
+            $value = NULL;
+        }
+        return $value;
+    }
+
+}

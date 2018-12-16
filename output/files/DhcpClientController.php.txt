@@ -1,0 +1,43 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 21/03/2018
+ * Time: 16:02
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Model\DhcpClient;
+use App\Http\Services\DhcpClientService;
+use App\Http\Services\DhcpService;
+
+class DhcpClientController extends Controller
+{
+    public function getDhcps(){
+        header('Content-type: application/json');
+
+        $result = DhcpClientService::getDhcps();
+
+        echo json_encode($result['result']);
+    }
+
+    public function addDhcp(){
+        DhcpClientService::addDhcp($_POST);
+    }
+    public function updateDhcp(){
+        DhcpClientService::updateDhcp($_POST);
+    }
+    public function removeDhcp(){
+        DhcpClientService::removeDhcp($_POST);
+    }
+
+    public function enableDhcp(){
+        DhcpClientService::enableDhcp($_POST);
+    }
+
+    public function disableDhcp(){
+        DhcpClientService::disableDhcp($_POST);
+    }
+}

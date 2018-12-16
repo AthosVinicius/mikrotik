@@ -1,0 +1,37 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 08/03/2018
+ * Time: 15:22
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Model\Profile;
+use App\Http\Services\ServersService;
+use App\Http\Util\MikrotikUtil;
+
+class ServersController
+{
+    public function getProfiles(){
+        $result = ServersService::getProfiles();
+
+        echo json_encode($result['result']);
+    }
+
+    public function addProfile(){
+        ServersService::addProfile($_POST);
+    }
+
+    public function updateProfile(){
+        ServersService::updateProfile($_POST);
+    }
+
+    public function removeProfile(){
+        ServersService::removeProfile($_POST);
+    }
+
+
+}

@@ -1,0 +1,58 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 07/03/2018
+ * Time: 17:35
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Util\MikrotikUtil;
+
+/**
+ * This class is responsible for overall project validation mikrotik
+ *
+ *
+ *
+ * @package App\Http\Controllers
+ * @author This code was developed by Atos Vinicius, under the service of MF Info
+ * @version initial
+ */
+class Validator extends Controller
+{
+    /**
+     * this method checks if the value is null
+     *
+     *
+     *
+     * @return boolean
+     * @access public
+     * @param $value
+     */
+    public static function is_empty($value){
+        $result = false;
+        if(empty($value)) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    /**
+     * this method checks if the value is null
+     *
+     *
+     *
+     * @return string|null
+     * @access public
+     * @param $value
+     */
+    public static function is_empty_null($value){
+        if(empty($value)) {
+            $value = NULL;
+        }
+        return $value;
+    }
+
+}

@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Model\FileMikrotik;
+use App\Http\Services\FileService;
+use App\Http\Util\MESSAGE;
+use App\Http\Util\MikrotikUtil;
+use Illuminate\Http\Request;
+use Mockery\Exception;
+
+class FilesController extends Controller
+{
+    public static function getFiles(){
+
+        $result = FileService::getFiles();
+
+        return $result['result'];
+    }
+
+    public static function sendFile(){
+        FileService::sendFile($_POST);
+    }
+
+    public static function removeFile(){
+        FileService::removeFile($_POST);
+    }
+}
+

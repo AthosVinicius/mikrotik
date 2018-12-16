@@ -1,0 +1,46 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 15/03/2018
+ * Time: 16:29
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Model\Address;
+use App\Http\Services\AddressService;
+use App\Http\Util\MikrotikUtil;
+use Mockery\Exception;
+
+class AddressController extends Controller
+{
+    public function getAddress(){
+        header('Content-type: application/json');
+
+        $result = AddressService::getAddress();
+
+        echo json_encode($result['result']);
+    }
+
+    public function addAddress(){
+        AddressService::addAddress($_POST);
+    }
+
+    public function updateAddress(){
+        AddressService::updateAddress($_POST);
+    }
+
+    public function removeAddress(){
+        AddressService::removeAddress($_POST);
+    }
+
+    public function disableAddress(){
+        AddressService::disableAddress($_POST);
+    }
+
+    public function enableAddress(){
+        AddressService::enableAddress($_POST);
+    }
+}

@@ -1,0 +1,21 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: texte
+ * Date: 23/03/2018
+ * Time: 18:22
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Services\ActivesService;
+
+class ActivesPPPController extends Controller
+{
+    public function getActives(){
+        $result = ActivesService::getActives();
+
+        echo json_encode($result['result']);
+    }
+}

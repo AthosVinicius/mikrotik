@@ -1,0 +1,55 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Atos Vinicius
+ * Date: 08/03/2018
+ * Time: 15:21
+ */
+
+namespace App\Http\Controllers;
+
+
+use App\Http\Model\Log;
+use App\Http\Util\MikrotikUtil;
+
+/**
+ * This class is responsible for loading the log records
+ *
+ *
+ *
+ * @package App\Http\Controllers
+ * @author This code was developed by Atos Vinicius, under the service of MF Info
+ * @version initial
+ */
+class LogController extends Controller
+{
+    /**
+     * this method returns all logs in mikrotik
+     *
+     *
+     *
+     * @return array returns all records
+     * @access public
+     */
+    public function getLog(){
+
+        $data = array();
+        $data['logs'] = array();
+
+        try {
+            $logs = MikrotikUtil::util()->setMenu('/log')->getAll();
+            foreach ($logs as $result) {
+                $log = new Log();
+                $log->create($result->getIterator(), 'API');
+                array_push($data['logs'], $log->extractVariables('object'));
+            }
+        } catch (Exception $e) {
+            //code exception
+        }
+
+        //HEADER JSON
+        header('Content-Type: application/json');
+
+        echo json_encode($data['logs']);
+    }
+}
